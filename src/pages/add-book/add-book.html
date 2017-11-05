@@ -1,0 +1,131 @@
+
+
+<ion-content padding class="sample-modal-page" [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}"> 
+<form class="form" [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)"> 
+
+
+<ion-toolbar color="secondary">
+      <ion-title>New Book
+<ion-icon style="float: right;" name="book">
+  </ion-icon> 
+      </ion-title>
+    </ion-toolbar>
+  <h6>Add new book to your library !</h6> 
+
+  <ion-list>
+	
+	  <ion-item >
+	    <ion-label floating>Book Name</ion-label> 
+	    <ion-input type="text" formControlName="title"></ion-input>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.title">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('title').hasError(validation.type) && (validations_form.get('title').dirty || validations_form.get('title').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+
+	  <ion-item>
+	    <ion-label floating>Description</ion-label>
+	    <ion-input type="text" formControlName="descrip"></ion-input>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.descrip">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('descrip').hasError(validation.type) && (validations_form.get('descrip').dirty || validations_form.get('descrip').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div> 
+
+	  <ion-item>
+	    <ion-label floating>ISBN (Enter without '-' )</ion-label>
+	    <ion-input type="text" formControlName="isbnn"></ion-input>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.isbnn">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('isbnn').hasError(validation.type) && (validations_form.get('isbnn').dirty || validations_form.get('isbnn').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div> 
+
+	  <ion-item>
+	    <ion-label floating>No. of books</ion-label>
+	    <ion-input type="text" formControlName="qty"></ion-input>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.qty">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('qty').hasError(validation.type) && (validations_form.get('qty').dirty || validations_form.get('qty').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+	 
+
+</ion-list>
+ <h6>Are you borrowing this book/s from someone ?</h6> 
+<ion-list radio-group> 
+
+<ion-item>
+    <ion-label>No</ion-label>
+    <ion-radio  value="1" (ionSelect)="changeRadio(1)" checked="true"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>Yes</ion-label>
+    <ion-radio  value="2" (ionSelect)="changeRadio(2)"></ion-radio>
+  </ion-item>
+</ion-list>
+
+<ion-list>
+
+	<ion-item>
+    	<ion-label floating>Owner of book/s</ion-label>   
+    	<ion-input type="text" formControlName="owner"></ion-input>
+  	</ion-item>
+  			<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.owner">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('owner').hasError(validation.type) && (validations_form.get('owner').dirty || validations_form.get('owner').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+
+
+  <ion-item>
+    <ion-label floating>Contact No.</ion-label>
+    <ion-input type="text" formControlName="tp"></ion-input>
+  </ion-item>
+  			<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.tp">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('tp').hasError(validation.type) && (validations_form.get('tp').dirty || validations_form.get('tp').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+
+  <ion-item>
+  <ion-label>Return date</ion-label>
+  <ion-datetime displayFormat="DDDD MMM DD, YYYY" pickerFormat="YYYY-MMM-DD" formControlName="rDate" [(ngModel)]="myDate"></ion-datetime>
+</ion-item>
+
+</ion-list>
+  <ion-item>
+            <button ion-button icon-left item-left (click)="showConfirmClose()" type="button">
+                <ion-icon name="close"></ion-icon>
+                Close
+            </button>
+             <button ion-button icon-left item-left (click)="showConfirm()" type="button">
+                <ion-icon name="trash"></ion-icon>
+                Clear
+            </button>
+
+
+            <button ion-button icon-left item-right type="submit" [disabled]="!validations_form.valid">
+                <ion-icon name="add"></ion-icon>
+                Add
+            </button>
+        </ion-item>
+
+ </form>       
+</ion-content>

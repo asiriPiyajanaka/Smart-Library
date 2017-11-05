@@ -1,0 +1,25 @@
+page-lend-book {
+.sample-modal-page {
+       position: absolute;
+		  top: 5%;
+		  left: 5%;
+		  right: 5%;
+		  bottom: 5%;
+		  display: block;
+		  width: 90%;
+		  height: 90%;
+		  
+		  border-radius: 6px;
+		  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    
+    .error-message{
+    color: red;
+    align: middle;
+  	}
+
+  	
+}
+
+

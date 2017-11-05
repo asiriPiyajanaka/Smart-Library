@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title  *ngIf="!toggled">{{title}}
+    <ion-icon *ngIf="!toggled" (click)="toggle()" name="search" style="float: right;"></ion-icon>
+</ion-title>
+    
+    
+    <ion-searchbar 
+       *ngIf="toggled"
+       [(ngModel)]="searchKey"
+       (ionInput)="searchThis($event)"
+       (ionCancel)="cancelSearch($event)"
+       (ionClear) = "cancelSearch($event)"
+	   [animated]="true"
+       [showCancelButton]="true">
+    </ion-searchbar>
+ 
+</ion-navbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content 
+    		pullingIcon="arrow-dropdown"
+      		pullingText="Pull to refresh"
+      		refreshingSpinner="crescent"
+      		refreshingText="Refreshing...">
+    	</ion-refresher-content>
+  	</ion-refresher>
+
+<!--img onerror='this.style.display = "none"' [src]="imagePath"-->
+
+<!--*****************Sub cat card*************************************************-->
+<ion-card *ngFor="let todo of subCatDetail; let i=index" class="card-background-page1">
+ 
+<ion-card-header>
+    <span style="color:blue"></span>     
+    <ion-icon style="float: right;" (click)="presentActionSheet(todo.subId)" name="settings">
+  	</ion-icon> 
+</ion-card-header>
+
+<ion-card-content  (click)="goToSubCatBooks(todo.subId, todo.sCatName, todo.mainCatId)">
+    <img src="assets/img/subCat.png"/>    
+    <div class="card-title">{{todo.subId}}. {{todo.sCatName}}</div> 
+ </ion-card-content>
+ 
+</ion-card>
+<!--*******************Book card*************************************************-->
+    <ion-card class ="books" *ngFor="let books of bookDetail; let i=index">
+    
+        
+        <ion-card-content>
+            <h2 class="title"><b>{{books.bId}}. {{books.bName}}</b><ion-icon style="float: right;padding-left: 15px;" (click)="presentActionSheet1(books.bId, books.catId)" name="options">
+  			</ion-icon> 
+
+			<ion-icon style="float: right;zoom:1.2;padding-left: 15px;" (click)="manegeBookmark(books.specs, books.bId, books.catId)" name="bookmark" [color]="books.specs == 1 ? 'gold' : 'gray'">
+  			</ion-icon>
+
+  			<ion-icon style="float: right;zoom:1.4;" (click)="manegeReading(books.rding, books.bId, books.catId)" name="glasses" [color]="books.rding == 1 ? 'green' : 'gray'">
+  			</ion-icon>
+  			
+  			</h2>
+            <p>• Description - {{books.description}} | • {{books.qty}} Book/s</p>
+            <p><b>• ISBN - {{books.isbn}}</b></p>
+            <p style="color:red;">{{ books.currPosition == 'inHand' ? '' : ' • Lended book' }}</p>
+            <p>{{ books.currPosition == 'inHand' ? '' : ' • Lended to - ' }}{{books.lenderName}}</p>
+            <p>{{ books.currPosition == 'inHand' ? '' : ' • Return Date - ' }}{{books.lRDate}} </p>
+
+            <div *ngIf="books.lRDate < lastActivityTime"><p style="color:red"><ion-icon style="zoom:1.2;padding-top: 2px;padding-right: 5px;padding-bottom: 5px;" name="alert" color="hardred">
+  					</ion-icon>Its time to collect this book back.</p> 
+  			</div>
+
+			<p><b>{{ books.currPosition == 'inHand' ? '' : ' • Make a call for - ' }}{{books.lenderName}}</b></p><a href="tel:{{books.lTp}}">{{books.lTp}}</a>
+
+			
+
+            <p>{{ books.borrowed == 0 ? '' : ' • Borrowed Book ! (Go to Borrowed book page from menu to view more information)' }}</p>
+
+            
+        </ion-card-content>
+        
+        <ion-item class="books">
+            <button ion-button icon-left (click)="updateFav(books.fav ,books.bId, books.catId)" clear item-left [color]="books.fav == 1 ? 'gold' : 'secondary'">
+                <ion-icon name="star"></ion-icon>
+                Favourite
+            </button>
+            <button ion-button icon-left (click)="controlLendButton(books.bId, books.currPosition)" clear item-right>
+                <ion-icon [name]="books.currPosition == 'inHand' ? 'exit' : 'basket'"></ion-icon>
+                {{ books.currPosition == 'inHand' ? 'Lend this book' : 'Take back' }}
+            </button>
+        </ion-item>
+
+    </ion-card>
+
+<ion-fab right bottom #fab>
+  <button ion-fab color="secondary">
+    <ion-icon name="arrow-up"></ion-icon>
+    
+  </button>
+  <ion-fab-list side="top">
+    <button ion-fab (click)="presentProfileModal(fab)" color="secondary">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>Add new book</ion-label>
+    </button>
+    <button ion-fab (click)="showPrompt(fab)" color="secondary">
+      <ion-icon name="git-network"></ion-icon>
+      <ion-label>Add sub category</ion-label>
+    </button>
+   
+  </ion-fab-list>
+</ion-fab>
+
+</ion-content>

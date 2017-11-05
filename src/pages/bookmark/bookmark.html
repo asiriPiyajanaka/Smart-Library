@@ -1,0 +1,57 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Bookmarks And Currunt Readings</ion-title>
+     </ion-navbar>
+</ion-header>
+
+
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+	<h4 align="center">Bookmarks</h4> 
+	<ion-list>
+  		<ion-item *ngFor="let bMark of bookmarksArr; let i=index" style="margin-top: 3px;">
+   			<ion-icon style="float: right; zoom:2.0;" name="bookmark" [color]="bMark.specs == 1 ? 'gold' : 'gray'" (click)="showPromptRemoveBookmrk(bMark.bId)">
+  			</ion-icon>
+      		<h2>{{bMark.bId}}. {{bMark.bName}}</h2>
+      		<p><b> • Bookmarked on (Page / Chapter) - {{bMark.specsDetail}}</b></p>
+
+     	</ion-item>
+	</ion-list>
+	<h4 align="center">Curruntly Readings</h4>
+	<ion-list>
+  		<ion-item *ngFor="let rding of readingsArr; let i=index" style="margin-top: 3px;">
+   			<ion-icon style="float: right; zoom:2.0;" name="glasses" [color]="rding.specs == 1 ? 'green' : 'gray'" (click)="showPromptRemoveReading(rding.bId)">
+  			</ion-icon>
+      		<h2>{{rding.bId}}. {{rding.bName}}</h2>
+      		<p><b> • Bookmarked on (Page / Chapter) - {{rding.specsDetail}}</b></p>
+
+     	</ion-item>
+	</ion-list>
+
+<ion-fab right bottom #fab>
+  <button ion-fab color="secondary">
+    <ion-icon name="arrow-up"></ion-icon>
+    
+  </button>
+  <ion-fab-list side="top">
+    <button ion-fab (click)="showPromptClear(fab)" color="secondary">
+      <ion-icon name="trash"></ion-icon>
+      <ion-label>Clear the page</ion-label>
+    </button>
+    <button ion-fab (click)="showPromptRemoveReadingsAll(fab)" color="secondary">
+      <ion-icon name="glasses"></ion-icon>
+      <ion-label>Remove all readings</ion-label>
+    </button>
+    <button ion-fab (click)="showPromptRemoveBookmrksAll(fab)" color="secondary">
+      <ion-icon name="bookmarks"></ion-icon>
+      <ion-label>Remove all bookmarks</ion-label>
+    </button>
+   
+  </ion-fab-list>
+</ion-fab>
+
+</ion-content>

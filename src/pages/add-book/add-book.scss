@@ -1,0 +1,49 @@
+page-add-book {
+	.sample-modal-page {
+       position: absolute;
+		  top: 5%;
+		  left: 5%;
+		  right: 5%;
+		  bottom: 5%;
+		  display: block;
+		  width: 90%;
+		  height: 90%;
+		  
+		  border-radius: 6px;
+		  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    
+    .error-message{
+    color: red;
+    align: middle;
+  	}
+}
+
+.toast-md .toast-wrapper {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 10;
+        
+        margin: auto;
+        
+        max-width: 700px;
+        border-radius: 0px;
+        background: transparent;
+         
+    }
+
+.toast-md .toast-message {
+        padding: 2px 0px 5px;
+     
+        color: #FFF;
+        text-align: center;
+    }
+
+.toast-container{
+background: transparent;
+background-color: #990000;
+border-radius: 100px;
+}
+

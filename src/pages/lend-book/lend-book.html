@@ -1,0 +1,75 @@
+
+
+<ion-content padding class="sample-modal-page" [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}"> 
+<form class="form" [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
+
+
+
+<ion-toolbar color="secondary">
+      <ion-title>Lend this book
+<ion-icon style="float: right;" name="book">
+  </ion-icon> 
+      </ion-title>
+    </ion-toolbar>
+
+  <h6>Lend this book to -</h6>
+
+  <ion-list>
+	
+	  <ion-item >
+	    <ion-label floating>Name</ion-label> 
+	    <ion-input type="text" formControlName="name"></ion-input>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.name">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+
+	  <ion-item>
+	    <ion-label floating>Contact no.</ion-label>
+	    <ion-input type="text" formControlName="tp"></ion-input>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.tp">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('tp').hasError(validation.type) && (validations_form.get('tp').dirty || validations_form.get('tp').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+
+	  <ion-item>
+	    <ion-label floating>Return date</ion-label>
+	    <ion-datetime displayFormat="DDDD MMM DD, YYYY" pickerFormat="YYYY-MMM-DD" formControlName="rDate" [(ngModel)]="myDate"></ion-datetime>
+	  </ion-item>
+	  		<div class="validation-errors">
+		      <ng-container *ngFor="let validation of validation_messages.rDate">
+		        <div class="error-message" align="center" *ngIf="validations_form.get('rDate').hasError(validation.type) && (validations_form.get('rDate').dirty || validations_form.get('rDate').touched)">
+		          {{ validation.message }}
+		        </div>
+		      </ng-container>
+		    </div>
+
+</ion-list>
+<ion-footer>
+  <ion-item>
+            <button ion-button icon-left item-left (click)="showConfirmClose()" type="button">
+                <ion-icon name="close"></ion-icon>
+                Close
+            </button>
+             <button ion-button icon-left item-left (click)="showConfirmClear()" type="button">
+                <ion-icon name="trash"></ion-icon>
+                Clear
+            </button>
+
+
+            <button ion-button icon-left item-right type="submit" [disabled]="!validations_form.valid">
+                <ion-icon name="add"></ion-icon>
+                Lend this book
+            </button>
+        </ion-item>
+        </ion-footer>
+ </form>       
+</ion-content>

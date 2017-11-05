@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Borrowed Books</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+    <ion-list>
+  		<ion-item *ngFor="let brrBook of brrBooks; let i=index" style="margin-top: 3px;">
+   			<ion-icon style="float: right; zoom:2.0;" name="exit" color="secondary" (click)="showPromptRemoveBrr(brrBook.bId)">
+  			</ion-icon>
+      		<h2>{{brrBook.bId}}. {{brrBook.bName}}</h2>
+      		<p>Borrowed from - {{brrBook.owner}}</p>
+      		<p>Borrowed on - {{brrBook.borrDate}}</p>
+      		<p>Scheduled return date - {{brrBook.rDate}}</p>
+
+      		<p><b>{{ brrBook.borrowed == 1 ? '' : ' • Make a call for- ' }}{{brrBook.owner}}</b></p><a href="tel:{{brrBook.tp}}">{{brrBook.tp}}</a> 
+
+     		
+     		<div *ngIf="brrBook.rDate < lastActivityTime"><p style="color:red"><ion-icon style="zoom:1.2;padding-top: 10px;padding-right: 5px;" name="alert" color="hardred">
+  					</ion-icon>You have to return this book back to owner.</p> 
+  			</div>
+
+     	</ion-item>
+	</ion-list>
+
+
+	<ion-fab right bottom #fab>
+	  <button ion-fab color="secondary" (click)="showPromptRemoveBrrAll()">
+	    <ion-icon color="light" name="exit" style="zoom:1.5;"></ion-icon>
+	    
+	  </button>
+	  
+	</ion-fab>
+
+</ion-content>

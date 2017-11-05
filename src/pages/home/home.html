@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Removed books</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+    <ion-list>
+  		<ion-item *ngFor="let delBook of delBooks; let i=index" style="margin-top: 3px;">  			
+      		<h2>{{delBook.bId}}. {{delBook.bName}}</h2>
+      		<p>Description - {{delBook.description}}</p>
+      		
+      		<button ion-button icon-left clear item-right style="float: right;" (click)="showPromptRestoreBook(delBook.bId)">
+                <ion-icon name="undo" style="zoom:2.0;" class="undo"></ion-icon>                
+            </button>
+            <button ion-button icon-left clear item-right style="float: right;" (click)="showPromptDeleteBook(delBook.bId)">
+                <ion-icon name="trash" style="zoom:2.0;"></ion-icon>                
+            </button>
+
+     	</ion-item>
+	</ion-list>
+
+
+	<ion-fab right bottom #fab>
+  <button ion-fab color="secondary">
+    <ion-icon name="arrow-up"></ion-icon>
+    
+  </button>
+  <ion-fab-list side="top">
+    <button ion-fab color="secondary" (click)="showPromptDeleteBookAll()">
+      <ion-icon name="trash"></ion-icon>
+      <ion-label>Clear All</ion-label>
+    </button>
+    <button ion-fab color="secondary" (click)="showPromptRestoreBookAll()">
+      <ion-icon name="undo"></ion-icon>
+      <ion-label>Restore All</ion-label>
+    </button>
+   
+  </ion-fab-list>
+</ion-fab>
+
+</ion-content>

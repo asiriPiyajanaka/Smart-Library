@@ -1,0 +1,35 @@
+.searchbar-input {
+  box-shadow: none !important;
+}
+
+ion-footer {
+  padding: 8px 16px !important;
+}
+
+
+.card-background-page {
+
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 37%;
+    font-size: 2.0em;
+    width: 85%;
+    font-weight: bold;
+    color: #02002D;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 53%;
+    width: 100%;
+    color: #fff;
+
+    }
+
+    }

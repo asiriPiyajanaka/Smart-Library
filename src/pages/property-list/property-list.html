@@ -1,0 +1,42 @@
+<ion-header> 
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon> 
+        </button>
+        <ion-searchbar [(ngModel)]="searchKey" 
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onInput($event)"
+        (ionCancel)="onCancel($event)"></ion-searchbar>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page" [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+
+  <ion-card *ngFor="let todo of todos; let i=index">
+
+<ion-card-header>
+    <span style="color:blue"></span>
+    
+    <ion-icon style="float: right;" (click)="presentActionSheet(todo.id)" name="settings">
+  </ion-icon> 
+
+</ion-card-header>
+<ion-card-content  (click)="onMe(i,todo.bCatName)">
+    <img src="assets/img/card.png"/>
+    <div class="card-title">{{todo.bCatName}}</div>  
+</ion-card-content>
+
+  </ion-card>
+
+  
+
+
+<ion-fab right bottom>
+    <button ion-fab color="secondary" (click)="showPrompt()"><ion-icon name="add"></ion-icon></button>
+</ion-fab>
+
+</ion-content>
+
+
+    <!--button   (click)="delete(todo.id)"><ion-icon name="add"></ion-icon></button-->

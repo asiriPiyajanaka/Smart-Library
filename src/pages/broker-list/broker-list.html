@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Favourites</ion-title>
+     </ion-navbar>
+</ion-header>
+
+
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+
+	<ion-list>
+  		<ion-item *ngFor="let favBook of favBooks; let i=index" style="margin-top: 3px;">
+   			<ion-icon style="float: right; zoom:2.0;" name="star" (click)="showPromptRemoveFav(favBook.bId)" [color]="favBook.fav == 1 ? 'danger' : 'secondary'">
+  			</ion-icon>
+      		<h2>{{favBook.bId}}. {{favBook.bName}}</h2>
+      		<p>{{favBook.description}}</p>
+
+     	</ion-item>
+	</ion-list>
+
+<ion-fab right bottom #fab>
+  <button ion-fab color="secondary" (click)="showPromptRemoveFavAll()">
+    <ion-icon color="bin" name="trash" style="zoom:1.5;"></ion-icon>
+    
+  </button>
+  
+</ion-fab>
+
+</ion-content>

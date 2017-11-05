@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Lended Books</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/img/' + image1 + ')'}">
+    <ion-list>
+  		<ion-item *ngFor="let lendBook of lendBooks; let i=index" style="margin-top: 3px;">
+   			<ion-icon style="float: right; zoom:2.0;" name="basket" color="secondary" (click)="showPromptRemoveLend(lendBook.bId)">
+  			</ion-icon>
+      		<h2>{{lendBook.bId}}. {{lendBook.bName}}</h2>
+      		<p>Lended to -{{lendBook.lenderName}} | Contact No. -{{lendBook.lTp}}</p>
+      		<p>Return date -{{lendBook.lRDate}}</p>
+      		<div *ngIf="lendBook.lRDate < lastActivityTime"><p style="color:red"><ion-icon style="zoom:1.2;padding-top: 10px;padding-right: 5px;" name="alert" color="hardred">
+  					</ion-icon>Its time to collect this book back.</p> 
+  			</div>
+     	</ion-item>
+	</ion-list>
+
+
+	<ion-fab right bottom #fab>
+	  <button ion-fab color="secondary" (click)="showPromptRemoveLendAll()">
+	    <ion-icon color="light" name="basket" style="zoom:1.5;"></ion-icon>
+	    
+	  </button>
+	  
+	</ion-fab>
+
+</ion-content>
